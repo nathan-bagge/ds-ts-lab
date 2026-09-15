@@ -42,15 +42,20 @@ console.log(colleagues.current.filter((c) => c.name === "Sheild O Connell"));
 // function to sort colleagues
 function sortColleagues(
     colleagues: Colleague[],
-    sorter: (c1: Colleague, c2: Colleague) => number
+    sorter: (c1: Colleague, c2: Colleague) => number,
+    max? : number
 ): EmailContact[] {
+    let end = colleagues.length;
+    if (max !==undefined) {
+        end = max <2 ? 1 : max;
+    }
     const sorted =colleagues.sort(sorter); //Colleague[] inferred
-    const result: EmailContact[] = sorted.map((ce) => ({ name: ce.name, email: ce.contact.email }))
-    return result;
+  const fullResult =  sorted.map((ce) => ({ name: ce.name, email: ce.contact.email }));
+  return fullResult.slice(0,end)
 }
 
-console.log(sortColleagues(colleagues.current, (a, b) => a.contact.extension - b.contact.extension));
-console.log(sortColleagues(colleagues.current, (a, b) => a.name.length - b.name.length));
+console.log(sortColleagues(colleagues.current, (a, b) => (a.contact.extension - b.contact.extension),3));
+console.log(sortColleagues(colleagues.current, (a, b) => (a.name.length - b.name.length),1));
 
 // find friends function that searches an array of friends for those that satisfy a criterion
 function findFriends(
