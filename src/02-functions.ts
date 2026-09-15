@@ -17,7 +17,7 @@ function highestExtension(cs: Colleague[]): Colleague {
 }
 console.log(highestExtension(colleagues.current));
 
-// Function to add colleague to the colleagues list addind extention as highest extension + 1
+// Function to add colleague to the colleagues list adding extension as highest extension + 1
 function addColleague(
     cs: Colleague[],
     name: string,
@@ -67,3 +67,14 @@ function findFriends(
 
 console.log(findFriends(friends, (friend) => friend.name.startsWith('Pa')));
 console.log(findFriends(friends, (friend) => friend.age < 35));
+
+// function to add an interest to a friend
+function addInterest(f: Friend, interest: string): string[]{
+    if (f.interests === undefined) {
+        f.interests = [];
+    }
+    f.interests.push(interest);
+    return f.interests;
+}
+
+console.log(addInterest(friends[1], 'Politics'));
